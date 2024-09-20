@@ -4,11 +4,15 @@ import numpy as np
 import pandas as pd
 from scipy.stats import skew, kurtosis
 from sklearn.preprocessing import StandardScaler
-import joblib
+import pickle
 
-# Load the trained SVM model and scaler
-svm_model = joblib.load('./svm_model.joblib')
-scaler = joblib.load('./scaler.joblib')
+# Load the trained SVM model using pickle
+with open('./svm_model.pkl', 'rb') as model_file:
+    svm_model = pickle.load(model_file)
+
+# Load the scaler using pickle
+with open('./scaler.pkl', 'rb') as scaler_file:
+    scaler = pickle.load(scaler_file)
 
 # Create the FastAPI app
 app = FastAPI()
